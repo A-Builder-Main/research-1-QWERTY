@@ -1,0 +1,891 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1.08in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newcommand{\Li}{\lambda}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\zetaR}{\zeta}
+\newcommand{\Oh}{O}
+\newcommand{\asympup}{\asymp}
+
+\title{Finite Li Coefficients and Spectral Clustering of Off-Critical-Line Zeros\\
+\large A Rigorous Refinement of Finite Li Resolution}
+\author{Mahan Dehghani}
+\date{\textbf{Manuscript version: 10 September 2026}\\[3pt]\textit{First draft: September 2026; revised: 10 September 2026}}
+\begin{document}
+\maketitle
+
+\begin{center}
+\smallskip
+\textit{Keywords:} Li coefficients; Riemann zeta function; Riemann hypothesis; nontrivial zeros; finite resolution; spectral clustering; exponential zero spectrum.
+\end{center}
+
+\begin{abstract}
+We study what finitely many nonnegative Li coefficients can force about the off-critical-line zeros of the Riemann zeta function. The basic object is the Li-modulus
+\[
+M_\rho := \left|\log\left|1-\frac1\rho\right|\right|,
+\]
+which governs the exponential factor in the contribution of a symmetry quartet. For
+\(\rho=\frac12+\delta+i\gamma\), \(|\delta|<\frac12\), and
+\(w_\rho=1-1/\rho=e^{\mu+i\theta}\), the exact quartet contribution is
+\[
+\Li_n(O_\rho)=4-4\cos(n\theta)\cosh(n\mu).
+\]
+We derive an exact formula for \(\mu\), an exact inversion from \(|\mu|\) to \(|\delta|\), and deterministic resonant indices at which \(\cos(n\theta)\) is uniformly positive. The main finite-window theorem compares a selected Li-modulus with the largest competing modulus: if \(\Li_1,\ldots,\Li_N\ge0\) and a resonance for the selected phase occurs at an index \(n\asymp N\), then
+\[
+M_\rho-M_1 \le \frac{\log N+\log\log N+O(1)}{N},
+\]
+where \(M_1\) is the supremum of the moduli of all other symmetry orbits. The proof requires no dominance assumption; the other off-line zeros are retained in the remainder and controlled by zero counting. For the maximal Li-modulus \(M_*\), this yields a genuine top-of-spectrum dichotomy: either \(M_*=O((\log N+\log\log N)/N)\), or the second-largest modulus lies within that scale of \(M_*\). We also prove that any off-critical-line zero forces infinitely many negative Li coefficients, by combining all maximal-modulus orbits and using a mean-square argument for their finite-frequency trigonometric sum. In the regime where all competing moduli are already at finite-resolution scale, the exact inversion recovers the horizontal scale
+\[
+|\beta-1/2|=O\!\left((\gamma^2+1/4)\frac{\log N+\log\log N}{N}\right)
+\]
+under the required small-displacement condition. Finally, we exhibit a symmetry-only finite-data obstruction showing that no comparable individual-zero conclusion can hold for arbitrary order-one entire functions without using arithmetic information specific to the zeta function.
+\end{abstract}
+
+\section{Introduction}
+
+Let \(\zetaR(s)\) denote the Riemann zeta function, and let the nontrivial zeros be counted with multiplicity. The Li coefficients are
+\[
+\Li_n=\sum_\rho\left[1-\left(1-\frac1\rho\right)^n\right],\qquad n\ge1,
+\]
+with the standard symmetric interpretation of the zero sum. Keiper's power-series construction and Li's criterion connect these coefficients to the Riemann hypothesis; Li proved that nonnegativity (equivalently, positivity in the standard formulation) for all indices characterizes the hypothesis. The general zero-set perspective was developed further by Bombieri and Lagarias. \cite{Keiper1992,Li1997,BombieriLagarias1999}
+
+The present paper addresses a different question. Suppose only the finite block
+\[
+\Li_1,\ldots,\Li_N
+\]
+is known to be nonnegative. What can this finite information say quantitatively about an individual off-critical-line zero? A natural parameter is the exponential rate
+\[
+M_\rho=\left|\log\left|1-\frac1\rho\right|\right|.
+\]
+For a quartet, this rate enters through \(\cosh(n\mu_\rho)\), so the first scale one expects to see from a single zero is determined by solving roughly
+\[
+e^{nM_\rho}\approx n\log n.
+\]
+This gives \(M_\rho\) of order \((\log n)/n\), and, when the horizontal displacement is small, \(|\beta-1/2|\) of order \(\gamma^2\log n/n\).
+
+There is, however, a basic obstruction to a direct one-zero argument. Other off-line zeros also generate exponentially growing terms, potentially with comparable or larger exponents. It is therefore not legitimate to replace the entire remainder by \(O(n\log n)\) without first accounting for the competing Li-moduli. The purpose of this paper is to isolate precisely what finite positivity can prove without such an unjustified dominance assumption.
+
+The principal result is a one-sided spectral comparison. For a selected off-line orbit, let \(M_1\) denote the largest Li-modulus among all other orbits. If one of the first \(N\) coefficients is taken at a deterministic resonance for the selected phase, then finite positivity implies
+\[
+M_\rho\le M_1+O\!\left(\frac{\log N+\log\log N}{N}\right).
+\]
+This is the sharp structural conclusion of the argument: finite positivity prevents one exponent from exceeding the entire competing spectrum by more than the finite-resolution scale.
+
+The strongest consequence is obtained at the top of the spectrum. Let \(M_*\) be the maximal Li-modulus and let \(M_{(2)}\) be the second-largest modulus, with repeated maximal values retained. Then, whenever a maximal orbit has a resonance at an index comparable to \(N\),
+\[
+M_*-M_{(2)}=O\!\left(\frac{\log N+\log\log N}{N}\right).
+\]
+Thus finite positivity forces the top of the Li-modulus spectrum either down to the finite-resolution scale or into a narrow cluster.
+
+We complement the finite-window result with an asymptotic statement in the other direction. If any off-critical-line zero exists, the maximal-modulus cluster produces infinitely many negative Li coefficients. The proof does not require a unique maximal orbit: all maximal orbits are combined into a finite trigonometric polynomial, whose mean square is positive. This is compatible with Li's criterion and clarifies why the finite-window theorem is naturally a clustering theorem rather than, by itself, an individual-zero theorem.
+
+The paper also records an abstract obstruction. Symmetry under \(s\mapsto1-s\) and complex conjugation alone does not determine the finite Li jet. One can construct symmetry-preserving order-one entire examples with off-line quartets while forcing the first finitely many Li coefficients to remain nonnegative; stronger exact finite-jet constructions for Riemann--Xi type functions have also appeared recently. \cite{Liu2026}
+
+\section{Standing assumptions and notation}
+
+We make the following assumptions explicit throughout.
+
+\begin{assumption}[Zeros and multiplicity]
+All nontrivial zeros of \(\zetaR\) are counted with multiplicity. We represent each symmetry orbit by one zero
+\[
+\rho=\frac12+\delta+i\gamma,\qquad \gamma>0,\qquad |\delta|<\frac12.
+\]
+The restriction \(|\delta|<1/2\) is the standard critical-strip condition.
+\end{assumption}
+
+\begin{assumption}[Orbit notation]
+For a representative \(\rho\), let
+\[
+O_\rho=\{\rho,1-\rho,\bar\rho,1-\bar\rho\}
+\]
+be its symmetry orbit. If the orbit has multiplicity \(m_\rho\), every orbit contribution below is multiplied by \(m_\rho\). When formulas are written for a single quartet, we suppress this multiplicity factor.
+\end{assumption}
+
+\begin{assumption}[Li coefficients]
+For every \(n\ge1\),
+\[
+\Li_n=\sum_\rho\left[1-\left(1-\frac1\rho\right)^n\right],
+\]
+where the zero sum is taken in the standard symmetric sense. Grouping the zeros into symmetry orbits makes the resulting orbit expansion absolutely convergent for each fixed \(n\).
+\end{assumption}
+
+\begin{assumption}[Finite positivity]
+For the finite-resolution results we assume
+\[
+\Li_n\ge0,\qquad 1\le n\le N.
+\]
+No form of the Riemann hypothesis is assumed.
+\end{assumption}
+
+\begin{definition}[Li-modulus]
+For an orbit representative \(\rho\), define
+\[
+w_\rho:=1-\frac1\rho,
+\qquad
+w_\rho=e^{\mu_\rho+i\theta_\rho},
+\qquad
+M_\rho:=|\mu_\rho|=|\log|w_\rho||.
+\]
+For \(\gamma>0\), we take \(\theta_\rho\in(0,\pi)\).
+\end{definition}
+
+\begin{definition}[Spectral maximum and second maximum]
+If at least one off-critical-line orbit exists, let
+\[
+M_*:=\max_\rho M_\rho>0,
+\]
+where the maximum is over distinct off-critical-line symmetry orbits. Define
+\[
+M_{(2)}:=\max\Bigl(\{M_\rho:M_\rho<M_*\}\cup\{0\}\Bigr).
+\]
+Thus if the maximal modulus is attained by more than one orbit, then \(M_{(2)}=M_*\).
+\end{definition}
+
+\section{Exact geometry of one off-critical-line orbit}
+
+Let
+\[
+\rho=\frac12+\delta+i\gamma,
+\qquad
+\gamma>0,
+\qquad
+|\delta|<\frac12.
+\]
+Set \(w=w_\rho=1-1/\rho\). The transformations \(\rho\mapsto1-\rho\) and \(\rho\mapsto\bar\rho\) act on \(w\) by inversion and conjugation:
+\[
+w_{1-\rho}=w^{-1},
+\qquad
+w_{\bar\rho}=\bar w,
+\qquad
+w_{1-\bar\rho}=\bar w^{-1}.
+\]
+Writing \(w=e^{\mu+i\theta}\) gives the following exact identity.
+
+\begin{proposition}[Exact quartet formula]
+For one quartet,
+\begin{equation}
+\Li_n(O_\rho)=4-4\cos(n\theta)\cosh(n\mu).
+\label{eq:quartet}
+\end{equation}
+For a quartet of multiplicity \(m_\rho\), the right-hand side is multiplied by \(m_\rho\).
+\end{proposition}
+
+\begin{proof}
+The four orbit terms are
+\[
+1-w^n,\quad 1-w^{-n},\quad 1-\bar w^n,\quad 1-\bar w^{-n}.
+\]
+Their sum is
+\[
+4-\left(w^n+w^{-n}+\bar w^n+\bar w^{-n}\right).
+\]
+Since \(w^n=e^{n\mu}e^{in\theta}\),
+\[
+w^n+w^{-n}=2\cos(n\theta)\cosh(n\mu),
+\]
+and the conjugate pair contributes the same quantity. This proves \eqref{eq:quartet}.
+\end{proof}
+
+\subsection{Exact modulus formula}
+
+A direct calculation gives
+\begin{equation}
+|w|^2
+=
+\frac{\gamma^2+(\delta-1/2)^2}
+{\gamma^2+(\delta+1/2)^2}.
+\label{eq:wmod}
+\end{equation}
+Set
+\[
+q:=\gamma^2+\frac14.
+\]
+Then
+\begin{equation}
+|w|^2
+=
+\frac{q-\delta+\delta^2}{q+\delta+\delta^2},
+\label{eq:wmodq}
+\end{equation}
+and therefore
+\begin{equation}
+\mu
+=
+\frac12\log\frac{q-\delta+\delta^2}{q+\delta+\delta^2}
+=
+-\operatorname{artanh}\!\left(\frac{\delta}{q+\delta^2}\right).
+\label{eq:mu}
+\end{equation}
+In particular,
+\begin{equation}
+M_\rho
+=\operatorname{artanh}\!\left(\frac{|\delta|}{q+\delta^2}\right).
+\label{eq:modulus}
+\end{equation}
+
+\begin{lemma}[Small-displacement expansion]
+For fixed \(\gamma\), as \(\delta\to0\),
+\begin{equation}
+\mu
+=
+-\frac{\delta}{q}
++
+\left(\frac1{q^2}-\frac1{3q^3}\right)\delta^3
++O_\gamma(\delta^5).
+\label{eq:taylormu}
+\end{equation}
+Consequently,
+\begin{equation}
+M_\rho
+=
+\frac{|\delta|}{q}\left(1+O_\gamma(\delta^2)\right).
+\label{eq:taylormod}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+From
+\[
+\frac{\delta}{q+\delta^2}
+=
+\frac{\delta}{q}-\frac{\delta^3}{q^2}+O(\delta^5)
+\]
+and
+\[
+\operatorname{artanh}x=x+\frac{x^3}{3}+O(x^5),
+\]
+substitution into \eqref{eq:mu} gives \eqref{eq:taylormu}. Taking absolute values yields \eqref{eq:taylormod}.
+\end{proof}
+
+\begin{remark}
+For \(\gamma\ge1\), the exact formula implies the useful uniform bounds
+\begin{equation}
+\frac56\frac{|\delta|}{q}
+\le M_\rho
+\le \frac{25}{21}\frac{|\delta|}{q}.
+\label{eq:uniformbounds}
+\end{equation}
+The constants are not optimized; their role is only to make the dependence uniform in \(\gamma\ge1\) and \(|\delta|<1/2\).
+\end{remark}
+
+\subsection{Exact inversion}
+
+Put
+\[
+u:=-\tanh\mu.
+\]
+Then \eqref{eq:mu} becomes
+\[
+u=\frac{\delta}{q+\delta^2},
+\]
+so \(\delta\) solves
+\[
+u\delta^2-\delta+uq=0.
+\]
+The branch tending to zero with $u$ is
+\begin{equation}
+\delta
+=
+\frac{1-\sqrt{1-4q u^2}}{2u}
+=
+\frac{2qu}{1+\sqrt{1-4q u^2}}.
+\label{eq:exactinversion}
+\end{equation}
+Hence
+\begin{equation}
+|\delta|
+=
+\frac{2q|\tanh\mu|}
+{1+\sqrt{1-4q\tanh^2\mu}}.
+\label{eq:exactabsinversion}
+\end{equation}
+Equation \eqref{eq:exactabsinversion} is exact whenever \(\delta\) belongs to the critical strip and \(\mu\) is its corresponding Li parameter.
+
+\subsection{Phase formula}
+
+Since
+\[
+w
+=\frac{(\delta-1/2)+i\gamma}{(\delta+1/2)+i\gamma},
+\]
+we obtain
+\begin{equation}
+w
+=
+\frac{\gamma^2+\delta^2-1/4+i\gamma}
+{(\delta+1/2)^2+\gamma^2}.
+\label{eq:phaserep}
+\end{equation}
+The denominator is positive. Thus, for \(\gamma>0\),
+\begin{equation}
+\theta
+=
+\operatorname{atan2}\left(\gamma,\gamma^2+\delta^2-\frac14\right)\in(0,\pi).
+\label{eq:phase}
+\end{equation}
+On the critical line, \(\delta=0\), and
+\begin{equation}
+\theta_c
+=2\arctan\frac1{2\gamma}.
+\label{eq:criticalphase}
+\end{equation}
+
+\section{Deterministic resonance}
+
+The quartet term in \eqref{eq:quartet} can be strongly negative only when \(\cos(n\theta)>0\). We therefore need an explicit way to locate such indices without assuming any Diophantine property of the phase.
+
+\begin{lemma}[Deterministic resonance]
+Assume \(0<\theta<1\), and define
+\[
+n_k:=\operatorname{round}\left(\frac{2\pi k}{\theta}\right),\qquad k\ge1,
+\]
+with any fixed convention at half-integers. Then
+\begin{equation}
+|n_k\theta-2\pi k|\le\frac{\theta}{2},
+\end{equation}
+and hence
+\begin{equation}
+\cos(n_k\theta)\ge\cos(\theta/2)>\cos(1/2)>0.877.
+\label{eq:resonance}
+\end{equation}
+Moreover,
+\[
+n_{k+1}-n_k=\frac{2\pi}{\theta}+O(1).
+\]
+If \(n_*\) is the largest resonant index not exceeding \(N\), then
+\[
+N-n_*<\frac{2\pi}{\theta}+1.
+\]
+In particular, if
+\begin{equation}
+N\ge2\left(\frac{2\pi}{\theta}+1\right),
+\label{eq:Nres}
+\end{equation}
+then
+\begin{equation}
+\frac N2\le n_*\le N.
+\label{eq:ncomparable}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The rounding definition gives the first inequality immediately. The cosine bound follows because the error angle is at most \(\theta/2<1/2\). The spacing estimate follows by subtracting consecutive rounded values. Finally, \(N-n_*\) is smaller than one spacing plus one, so \eqref{eq:Nres} implies \(n_*\ge N/2\).
+\end{proof}
+
+\begin{remark}
+For high zeros, \(\theta\asymp1/\gamma\), so the resonance spacing is \(\asymp\gamma\). Thus the finite-window theorem below requires an index range large enough to reach a resonance of the selected phase. The proof does not require irrationality of \(\theta/(2\pi)\).
+\end{remark}
+
+\section{Global control of the competing spectrum}
+
+Fix an off-critical-line orbit \(\rho_0\), with Li-modulus \(M_0=M_{\rho_0}>0\). Let
+\[
+M_1:=\sup_{\rho\ne\rho_0}M_\rho,
+\]
+where the supremum is over distinct symmetry orbits. If there is no other off-critical-line orbit, set \(M_1=0\). Critical-line orbits have modulus zero.
+
+Write
+\[
+\Li_n=D_0(n)+R_n,
+\]
+where
+\[
+D_0(n)=m_0\left[4-4\cos(n\theta_0)\cosh(n\mu_0)\right]
+\]
+and \(m_0\) is the multiplicity of the selected orbit. The following estimate is the analytic input for the main theorem.
+
+\begin{proposition}[Competing-spectrum remainder]
+\label{prop:remainder}
+There is an absolute constant \(C>0\) such that, for all sufficiently large integers \(n\),
+\begin{equation}
+|R_n|
+\le C n\log n\,e^{nM_1}.
+\label{eq:remainder}
+\end{equation}
+The constant may absorb fixed multiplicity factors from the selected orbit convention, but no dependence on the individual competing zeros is required.
+\end{proposition}
+
+\begin{proof}
+Split the remaining zero orbits according to \(|\gamma|\le2n\) and \(|\gamma|>2n\).
+
+For $|\gamma|\le2n$, the Riemann--von Mangoldt zero-counting formula gives $O(n\log n)$ zeros, hence $O(n\log n)$ symmetry orbits up to an absolute multiplicative factor. For an off-critical-line orbit the quartet formula gives
+\[
+\left|4-4\cos(n\theta_\rho)\cosh(n\mu_\rho)\right|
+\le4+4\cosh(nM_1)
+\ll e^{nM_1}.
+\]
+For a critical-line pair the orbit contribution is $2-2\cos(n\theta_\rho)$, whose absolute value is at most $4$. Since $M_1\ge0$, both cases are $O(e^{nM_1})$. Multiplicities are included in the zero count. Hence the low-height contribution is
+\[
+O\left(n\log n\,e^{nM_1}\right).
+\]
+
+For the high-height tail, \(|\gamma|>2n\) gives
+\[
+|w_\rho-1|=\frac1{|\rho|}\le\frac1{|\gamma|}<\frac1{2n}.
+\]
+The principal logarithm therefore satisfies
+\[
+|\log w_\rho|\le2|w_\rho-1|\le\frac2{|\gamma|},
+\]
+so
+\[
+|\mu_\rho|,|\theta_\rho|\le\frac2{|\gamma|}.
+\]
+Using \(1-\cos x=O(x^2)\) and \(\cosh x-1=O(x^2)\) for bounded \(x\), each orbit contributes
+\[
+O\left(\frac{n^2}{\gamma_\rho^2}\right).
+\]
+Partial summation with the standard zero-counting bound \(N(T)=O(T\log T)\) gives
+\[
+\sum_{|\gamma_\rho|>2n}\frac1{\gamma_\rho^2}
+=O\left(\frac{\log n}{n}\right).
+\]
+Thus the high-height tail is \(O(n\log n)\), which is bounded by the right-hand side of \eqref{eq:remainder} because \(M_1\ge0\). Combining the two ranges proves the estimate.
+\end{proof}
+
+\section{Finite Li positivity and spectral clustering}
+
+We now state the principal finite-resolution theorem.
+
+\begin{theorem}[Finite-Li spectral comparison]
+\label{thm:main}
+Let \(\rho_0\) be an off-critical-line zero with Li-modulus \(M_0>0\) and phase \(\theta_0\in(0,1)\). Let \(M_1\) be the largest Li-modulus among all other symmetry orbits, with \(M_1=0\) if none exists. Assume
+\[
+\Li_1,\ldots,\Li_N\ge0
+\]
+and suppose there is an index \(n\in[N/2,N]\) such that
+\[
+\cos(n\theta_0)\ge c_0>0.
+\]
+Then, for all sufficiently large \(n\),
+\begin{equation}
+M_0-M_1
+\le
+\frac{\log n+\log\log n+C(c_0)}{n},
+\label{eq:main}
+\end{equation}
+where \(C(c_0)\) is independent of the selected zero and of \(n\).
+Consequently,
+\begin{equation}
+M_0-M_1
+=O\left(\frac{\log N+\log\log N}{N}\right).
+\label{eq:mainN}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+At the chosen index,
+\[
+\Li_n
+=4m_0-4m_0\cos(n\theta_0)\cosh(nM_0)+R_n,
+\]
+where \(m_0\ge1\). Since \(\Li_n\ge0\), \(\cos(n\theta_0)\ge c_0\), and \(m_0\ge1\),
+\[
+4c_0\cosh(nM_0)
+\le4+|R_n|.
+\]
+By \eqref{eq:remainder},
+\[
+4c_0\cosh(nM_0)
+\le4+Cn\log n\,e^{nM_1}.
+\]
+Since \(\cosh x\ge e^x/2\),
+\[
+2c_0e^{nM_0}
+\le4+Cn\log n\,e^{nM_1}.
+\]
+For sufficiently large \(n\), the constant term is absorbed into the second term, giving
+\[
+e^{n(M_0-M_1)}
+\le C'\frac{n\log n}{c_0}.
+\]
+Taking logarithms yields \eqref{eq:main}. Since \(n\in[N/2,N]\), \(\log n=\log N+O(1)\) and \(1/n=O(1/N)\), proving \eqref{eq:mainN}.
+\end{proof}
+
+\begin{remark}[One-sided nature of the theorem]
+The conclusion is deliberately one-sided:
+\[
+M_0\le M_1+O((\log N+\log\log N)/N).
+\]
+It does not imply \(|M_0-M_1|=O((\log N)/N)\) for an arbitrary selected zero. If another orbit has much larger modulus, the theorem is compatible with that situation. A genuine two-sided top-of-spectrum statement is obtained by selecting a maximal-modulus orbit.
+\end{remark}
+
+\subsection{Top-of-spectrum form}
+
+\begin{corollary}[Finite positivity constrains the top two moduli]
+\label{cor:topcluster}
+Assume at least one off-critical-line orbit exists, let \(M_*\) be the maximal Li-modulus and \(M_{(2)}\) the second-largest modulus as defined above. Suppose a maximal-modulus orbit has a phase \(\theta_*
+\in(0,1)\) and there is a resonant index \(n\in[N/2,N]\) with
+\[
+\cos(n\theta_*)\ge c_0>0.
+\]
+If \(\Li_1,\ldots,\Li_N\ge0\), then
+\begin{equation}
+M_*-M_{(2)}
+\le
+\frac{\log N+\log\log N+O(1)}{N},
+\label{eq:topcluster}
+\end{equation}
+where the implied constant may depend on \(c_0\).
+\end{corollary}
+
+\begin{proof}
+Select a maximal-modulus orbit. The largest modulus among all other orbits is exactly \(M_{(2)}\). Apply \cref{thm:main}.
+\end{proof}
+
+\begin{remark}
+If the maximum is attained by several orbits, then \(M_{(2)}=M_*\) and \eqref{eq:topcluster} is tautologically satisfied. If the maximum is unique, the result gives the substantive conclusion that the gap between the top two moduli is at most the finite-resolution scale.
+\end{remark}
+
+\section{The isolated-background regime and horizontal displacement}
+
+The preceding theorem is strongest as a spectral statement. To turn it into a statement about one horizontal displacement, one needs a separate assumption controlling the entire competing spectrum.
+
+\begin{definition}[Finite-resolution negligible background]
+For a given finite window \(N\), say that a selected orbit has a negligible Li-modulus background if
+\begin{equation}
+M_1
+\le
+K\frac{\log N+\log\log N}{N}
+\label{eq:background}
+\end{equation}
+for some constant \(K\) independent of the selected orbit.
+\end{definition}
+
+\begin{corollary}[Isolated-background resolution]
+Under the assumptions of \cref{thm:main}, suppose additionally that \eqref{eq:background} holds. Then
+\begin{equation}
+M_0
+=O\left(\frac{\log N+\log\log N}{N}\right).
+\label{eq:Msmall}
+\end{equation}
+If, in addition,
+\begin{equation}
+qM_0^2\to0,
+\qquad q=\gamma^2+\frac14,
+\label{eq:smallcondition}
+\end{equation}
+within the regime under consideration, then
+\begin{equation}
+|\delta|
+=qM_0(1+o(1)),
+\label{eq:deltam}
+\end{equation}
+and therefore
+\begin{equation}
+|\delta|
+=O\!\left(
+\left(\gamma^2+\frac14\right)
+\frac{\log N+\log\log N}{N}
+\right).
+\label{eq:gammaresolution}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Equation \eqref{eq:Msmall} follows immediately from \cref{thm:main} and \eqref{eq:background}. The exact inversion \eqref{eq:exactabsinversion}, together with \(\tanh M_0\sim M_0\) and \(\sqrt{1-4q\tanh^2M_0}\to1\), gives \eqref{eq:deltam} under \eqref{eq:smallcondition}. Substitution of \eqref{eq:Msmall} then yields \eqref{eq:gammaresolution}.
+\end{proof}
+
+\begin{remark}
+The condition \eqref{eq:background} is substantially stronger than uniqueness of the selected modulus. A unique maximal modulus may still have a second-largest modulus of comparable size. Thus the \(\gamma^2\log N/N\) estimate is a resolution statement for a selected exponent above a finite-resolution background, not an unconditional theorem for every individual zeta zero.
+\end{remark}
+
+\section{A maximal-modulus cluster forces infinitely many negative coefficients}
+
+The finite-window theorem has an asymptotic companion that is independent of any spectral isolation assumption.
+
+\begin{proposition}[Existence of a maximal modulus]
+If at least one off-critical-line zero exists, then the maximal Li-modulus \(M_*\) is attained by at least one symmetry orbit.
+\end{proposition}
+
+\begin{proof}
+For \(|\gamma|\to\infty\), equation \eqref{eq:mu} gives
+\[
+M_\rho
+\le \frac{C}{\gamma^2}
+\]
+for $|\delta|<1/2$. Hence for every $\eta>0$, only finitely many zero orbits can satisfy $M_
+ho\ge\eta$. If an off-line zero exists, its modulus is positive, and taking $\eta$ below one such modulus leaves only finitely many candidates above $\eta$. The supremum is therefore achieved.
+\end{proof}
+
+\begin{lemma}[Positive values recur in the maximal trigonometric sum]
+Let
+\[
+S_n=\sum_{j=1}^r a_j\cos(n\theta_j),
+\qquad a_j>0,
+\qquad 0<\theta_j<\pi,
+\]
+where equal frequencies have been combined. Then there exists \(c_*>0\) such that
+\[
+S_n\ge c_*
+\]
+for infinitely many integers \(n\).
+\end{lemma}
+
+\begin{proof}
+Cesaro averaging gives
+\[
+\frac1N\sum_{n\le N}S_n\to0,
+\]
+and, since the frequencies are distinct in \((0,\pi)\),
+\[
+\frac1N\sum_{n\le N}S_n^2
+\to
+\frac12\sum_{j=1}^r a_j^2
+=:Q>0.
+\]
+Let \(A=\sum_j a_j\), so \(|S_n|\le A\). Suppose, to the contrary, that for every \(\eps>0\), all sufficiently large positive values of \(S_n\) are smaller than \(\eps\). Then the positive part \(S_n^+=\max(S_n,0)\) has Cesaro mean at most \(\eps\) asymptotically. Because the total Cesaro mean tends to zero, the negative part has the same limiting mean, so the Cesaro mean of \(|S_n|\) is at most \(2\eps\). Since \(S_n^2\le A|S_n|\), the limiting mean square is at most \(2A\eps\). Choosing \(\eps<Q/(2A)\) contradicts the definition of \(Q\). Therefore some fixed \(c_*>0\) occurs infinitely often.
+\end{proof}
+
+\begin{proposition}[Off-critical-line zeros force infinitely many negative Li coefficients]
+Assume an off-critical-line zero exists. Let \(M_*>0\) be the maximal Li-modulus, and let the finitely many maximal-modulus orbits be \(\rho_1,\ldots,\rho_r\). After combining equal phases, write their weighted oscillatory factor as
+\[
+S_n=\sum_{j=1}^r a_j\cos(n\theta_j),
+\qquad a_j>0.
+\]
+Let \(M_{(2)}<M_*\) denote the largest modulus strictly below \(M_*\), with \(M_{(2)}=0\) if there are no such off-line orbits. Then there exist constants \(c>0\) and infinitely many integers \(n\) such that
+\begin{equation}
+\Li_n
+\le
+-c e^{nM_*}
++O\left(n\log n\,e^{nM_{(2)}}\right).
+\label{eq:negativeasymptotic}
+\end{equation}
+In particular,
+\begin{equation}
+\Li_n<0
+\end{equation}
+for infinitely many \(n\), and in fact along the same subsequence for all sufficiently large \(n\).
+\end{proposition}
+
+\begin{proof}
+For a maximal orbit, \(|\mu|=M_*\), and its quartet contribution is
+\[
+4m_j-4m_j\cos(n\theta_j)\cosh(nM_*).
+\]
+Summing over the maximal cluster gives
+\[
+4\sum_jm_j-4\cosh(nM_*)S_n,
+\]
+after absorbing multiplicities into the coefficients \(a_j\). By the lemma, there is an infinite subsequence on which \(S_n\ge c_*>0\). Along this subsequence,
+\[
+-4\cosh(nM_*)S_n
+\le -2c_*e^{nM_*}.
+\]
+All remaining off-critical-line orbits have modulus at most \(M_{(2)}\), so the remainder estimate from \cref{prop:remainder}, with the maximal cluster removed, gives
+\[
+O\left(n\log n\,e^{nM_{(2)}}\right).
+\]
+Critical-line terms and the high-height tail are included in the same bound because \(M_{(2)}\ge0\). Since \(M_{(2)}<M_*\), the exponentially smaller remainder is eventually dominated by the maximal term. This proves \eqref{eq:negativeasymptotic} and hence negativity for infinitely many indices.
+\end{proof}
+
+\begin{remark}
+No additional ``strict spectral gap'' hypothesis is required here: once all maximal-modulus orbits are collected into the maximal cluster, the next lower modulus is automatically strictly smaller than \(M_*\). The asymptotic negative subsequence is therefore a direct consequence of the existence of any off-critical-line zero together with the symmetry-orbit structure.
+\end{remark}
+
+\section{The finite-resolution dichotomy at the spectral maximum}
+
+The preceding results give a precise finite-data alternative when one works at the top of the spectrum.
+
+\begin{corollary}[Maximal-modulus dichotomy]
+Assume \(\Li_1,\ldots,\Li_N\ge0\), and assume the resonance hypothesis of \cref{cor:topcluster}. Put
+\[
+\Delta_N:=\frac{\log N+\log\log N+O(1)}{N}.
+\]
+Then the following dichotomy holds:
+\begin{enumerate}[label=(\alph*)]
+\item \(M_*=O(\Delta_N)\);
+\item \(M_*>C\Delta_N\) for a sufficiently large fixed \(C\), in which case there is another off-critical-line orbit with
+\[
+M_{(2)}=M_*+O(\Delta_N),
+\]
+where case (b) includes the possibility that the maximum is attained by more than one orbit, in which case \(M_{(2)}=M_*\).
+\end{enumerate}
+Equivalently, finite positivity forces the top of the off-critical-line Li-modulus spectrum either into the finite-resolution scale or into an \(O(\Delta_N)\)-cluster.
+\end{corollary}
+
+\begin{proof}
+By \cref{cor:topcluster},
+\[
+M_*-M_{(2)}=O(\Delta_N).
+\]
+If \(M_*=O(\Delta_N)\), this is case (a). Otherwise the gap estimate gives \(M_{(2)}=M_*+O(\Delta_N)\), proving (b).
+\end{proof}
+
+\begin{remark}
+The statement is intentionally about the maximal modulus. For an arbitrary selected orbit one cannot conclude a dichotomy of this form, because the selected modulus may be far below the spectral maximum.
+\end{remark}
+
+\section{An abstract finite-data obstruction without arithmetic structure}
+
+The preceding theorems concern the actual zero set of \(\zetaR\). It is useful to separate them from a purely symmetry-theoretic question: can finitely many Li coefficients determine an individual off-line zero for an arbitrary order-one entire function with the same reflection and reality symmetries? The answer is no.
+
+For \(\gamma>0\), define
+\[
+L_\gamma(s):=(s-1/2)^2+\gamma^2,
+\]
+and
+\[
+P_{\delta,\gamma}(s)
+:=[(s-1/2-\delta)^2+\gamma^2]
+[(s-1/2+\delta)^2+\gamma^2].
+\]
+The polynomial \(P_{\delta,\gamma}\) is invariant under \(s\mapsto1-s\) and under complex conjugation. Its zeros form an off-critical-line quartet when \(\delta\ne0\), while
+\[
+P_{0,\gamma}(s)=L_\gamma(s)^2.
+\]
+Thus, at the level of symmetry and multiplicity, an off-line quartet can replace two critical-line pairs.
+
+For a critical-line pair at height \(T\), the orbit contribution is
+\[
+2[1-\cos(n\theta_T)],
+\]
+with \(\theta_T\in(0,\pi)\). For a fixed finite set \(1\le n\le N\), one can choose \(T\) so that all these finitely many quantities are positive, and then add sufficiently large multiplicity of that critical-line pair to dominate the finitely many contributions of a fixed off-line quartet. Therefore no universal finite-information barrier depending only on symmetry and order can force a pointwise horizontal-displacement bound for arbitrary symmetric entire functions.
+
+A stronger exact finite-jet obstruction was constructed by Zongmin Liu for Riemann--Xi type functions: the first finitely many Li coefficients can be kept exactly unchanged while a symmetric polynomial perturbation inserts off-critical-line zeros. The construction does not preserve the Euler product or the prime-number explicit formula, so it does not contradict a theorem that uses arithmetic information specific to \(\zetaR\). \cite{Liu2026}
+
+\section{Relation to existing Li theory}
+
+The classical Li criterion originates in the work of Keiper and Li, with Bombieri--Lagarias providing a broad complementary zero-set formulation. \cite{Keiper1992,Li1997,BombieriLagarias1999} Voros developed exact and asymptotic formulas for Li coefficients and showed, in particular, the contrasting tempered versus non-tempered asymptotic behavior associated with the Riemann hypothesis. \cite{Voros2006}
+
+Finite Li information has also been studied through zero-free-region criteria. Palojarvi's 2020 paper gives explicit zero-free regions from suitable finite ranges of \(\tau\)-Li coefficients and conversely relates negative coefficients to zeros in prescribed regions. \cite{Palojarvi2020} The question of what finitely many ordinary Li coefficients imply about zero location remains an active topic; a University of Queensland seminar by Neea Palojarvi on 9 September 2026 explicitly described this finite-information question and identified joint work with Samprit Ghosh and Nicol Leong. \cite{Palojarvi2026}
+
+The present paper is narrower than a general finite-Li theory and also different in emphasis. The main quantity here is the exponential Li-modulus \(M_\rho\), and the principal statement is a finite-window comparison between one exponent and the competing spectral maximum. The result is obtained directly from the exact orbit formula and a zero-counting remainder estimate. No assertion of spectral isolation of arbitrary zeta zeros is made.
+
+For context, rigorous numerical verification currently provides strong information on the critical line at finite height. Platt and Trudgian verified, using interval arithmetic, that all nontrivial zeros up to height \(3\cdot10^{12}\) lie on the critical line and are simple. \cite{PlattTrudgian2021} This numerical fact is not used in the proofs here, but it illustrates that any hypothetical off-critical-line zero surviving the presently verified range would necessarily occur at very large height.
+
+\section{What is proved and what remains open}
+
+The paper establishes the following results.
+
+\begin{enumerate}[label=\arabic*.]
+\item The exact quartet identity \eqref{eq:quartet}.
+\item The exact modulus formula \eqref{eq:modulus} and exact inversion \eqref{eq:exactabsinversion}.
+\item The corrected local expansion \eqref{eq:taylormu} and uniform comparison bounds \eqref{eq:uniformbounds}.
+\item The deterministic resonance lemma, including an explicit condition ensuring a resonant index lies in \([N/2,N]\).
+\item The competing-spectrum estimate \eqref{eq:remainder}, derived from standard zero counting and the high-height \(\gamma^{-2}\) tail.
+\item The finite-Li spectral comparison theorem \eqref{eq:main}.
+\item The top-of-spectrum clustering corollary \eqref{eq:topcluster}.
+\item The isolated-background resolution estimate \eqref{eq:gammaresolution}, including its exact small-displacement hypothesis.
+\item The maximal-cluster negative-subsequence theorem: the existence of any off-critical-line zero forces infinitely many negative Li coefficients.
+\item The maximal-modulus finite-resolution dichotomy.
+\item The symmetry-only finite-data obstruction for general entire functions, together with the distinction between symmetry data and arithmetic zeta structure.
+\end{enumerate}
+
+The following stronger consequences are not proved here. We do not prove that an arbitrary specified zeta zero has negligible competing Li-modulus background. We do not prove that the top two Li-moduli are separated by a positive proportion of the maximal modulus. We do not prove any arithmetic lower bound on constructive interference that would produce a negative coefficient at a prescribed finite index from a specified spectral gap. Most importantly, we do not derive an unconditional pointwise statement of the form
+\[
+\Li_1,\ldots,\Li_N\ge0
+\quad\Longrightarrow\quad
+|\beta-1/2|\le C\gamma^2\frac{\log N}{N}
+\]
+for every off-critical-line zero of the zeta function. Such a result would require additional arithmetic information beyond the spectral comparison proved here.
+
+\section{Further directions}
+
+The finite-resolution theorem identifies a concrete next problem. Let \(M_*\) be the maximal Li-modulus and let \(M_{(2)}\) be the next lower modulus. A decisive arithmetic input would control the phases of the maximal cluster strongly enough to force a negative coefficient before a prescribed finite threshold whenever
+\[
+M_*-M_{(2)}\ge\Delta.
+\]
+A bound of the schematic form
+\[
+n\ll \Delta^{-1}\log(1/\Delta)
+\]
+would turn the qualitative maximal-cluster obstruction into a quantitative finite-window theorem.
+
+A still stronger result would show that sufficiently large maximal off-line moduli are arithmetically separated from the rest of the spectrum. Such a statement would immediately convert the present spectral-resolution scale into an individual-zero bound. At present, the spectral comparison proved in this paper is unconditional, while these arithmetic separation problems remain beyond its scope.
+
+\section{Conclusion}
+
+The correct finite-resolution object for Li coefficients is the exponential Li-modulus spectrum rather than an arbitrary individual zero. For an off-critical-line zero,
+\[
+M_\rho=\left|\log\left|1-\frac1\rho\right|\right|,
+\]
+and the exact quartet contribution contains \(\cosh(nM_\rho)\). Finite positivity up to \(N\), together with a phase resonance at an index comparable to \(N\), therefore limits how far one Li-modulus can exceed the competing spectrum: the excess is at most of order
+\[
+\frac{\log N+\log\log N}{N}.
+\]
+
+At the top of the spectrum this becomes a genuine clustering theorem. Either the maximal off-critical-line exponent lies at finite-resolution scale, or another orbit has nearly the same exponent. In the separate regime in which the competing background is already negligible at this scale, the exact inversion translates the result into the horizontal displacement scale
+\[
+|\beta-1/2|
+=O\!\left((\gamma^2+1/4)\frac{\log N+\log\log N}{N}\right).
+\]
+The maximal-cluster argument also shows that an off-critical-line zero necessarily produces infinitely many negative Li coefficients asymptotically. Thus the finite-window issue is not whether non-RH behavior eventually appears, but how finite a window can resolve the dominant exponential spectrum.
+
+The resulting framework separates three logically distinct questions: exact orbit geometry, finite-window spectral comparison, and arithmetic control of the competing spectrum. That separation is the main refinement of the finite Li resolution problem developed here.
+
+\begin{thebibliography}{99}
+
+\bibitem{Keiper1992}
+J. B. Keiper,
+\newblock Power series expansions of Riemann's $\xi$ function,
+\newblock \emph{Mathematics of Computation} 58 (1992), no. 198, 765--773.
+\newblock DOI: \href{https://doi.org/10.1090/S0025-5718-1992-1122072-5}{10.1090/S0025-5718-1992-1122072-5}.
+
+\bibitem{Li1997}
+X.-J. Li,
+\newblock The positivity of a sequence of numbers and the Riemann hypothesis,
+\newblock \emph{Journal of Number Theory} 65 (1997), no. 2, 325--333.
+\newblock DOI: \href{https://doi.org/10.1006/jnth.1997.2137}{10.1006/jnth.1997.2137}.
+
+\bibitem{BombieriLagarias1999}
+E. Bombieri and J. C. Lagarias,
+\newblock Complements to Li's criterion for the Riemann hypothesis,
+\newblock \emph{Journal of Number Theory} 77 (1999), no. 2, 274--287.
+\newblock DOI: \href{https://doi.org/10.1006/jnth.1999.2392}{10.1006/jnth.1999.2392}.
+
+\bibitem{Voros2006}
+A. Voros,
+\newblock Sharpenings of Li's Criterion for the Riemann Hypothesis,
+\newblock \emph{Mathematical Physics, Analysis and Geometry} 9 (2006), 53--63.
+\newblock DOI: \href{https://doi.org/10.1007/s11040-005-9002-8}{10.1007/s11040-005-9002-8}.
+
+\bibitem{Palojarvi2020}
+N. Palojarvi,
+\newblock Explicit zero-free regions and a $\tau$-Li-type criterion,
+\newblock \emph{Albanian Journal of Mathematics} 14 (2020), 47--77.
+\newblock arXiv:1807.01506.
+
+\bibitem{Hasanalizade2022}
+E. Hasanalizade, Q. Shen, and P.-J. Wong,
+\newblock Counting zeros of the Riemann zeta function,
+\newblock \emph{Journal of Number Theory} 235 (2022), 219--241.
+\newblock DOI: \href{https://doi.org/10.1016/j.jnt.2021.06.032}{10.1016/j.jnt.2021.06.032}.
+
+\bibitem{PlattTrudgian2021}
+D. J. Platt and T. S. Trudgian,
+\newblock The Riemann hypothesis is true up to $3\cdot10^{12}$,
+\newblock \emph{Bulletin of the London Mathematical Society} 53 (2021), no. 3, 792--797.
+\newblock DOI: \href{https://doi.org/10.1112/blms.12460}{10.1112/blms.12460}.
+
+\bibitem{Liu2026}
+Z. Liu,
+\newblock Exact finite Li-jet indistinguishability for Riemann--Xi type functions,
+\newblock Zenodo preprint, DOI: \href{https://doi.org/10.5281/zenodo.21778284}{10.5281/zenodo.21778284}, 2026.
+
+\bibitem{Palojarvi2026}
+N. Palojarvi,
+\newblock On Li coefficients,
+\newblock University of Queensland seminar announcement, 9 September 2026.
+\newblock \href{https://smp.uq.edu.au/event/session/17711}{Event page}.
+
+\end{thebibliography}
+
+\end{document}
