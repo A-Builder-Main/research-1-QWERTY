@@ -1,0 +1,368 @@
+FINITE LI COEFFICIENTS AND SPECTRAL CLUSTERING
+OF OFF-CRITICAL-LINE ZEROS
+A rigorous refinement of finite Li resolution
+Draft manuscript — September 2026
+Abstract
+We study what finitely many nonnegative Li coefficients can force about the off-critical-line zeros of the Riemann zeta function. The starting point is the exact contribution of a symmetry quartet
+rho = 1/2 + delta + i gamma,  1-rho,  conjugate(rho),  1-conjugate(rho).
+Writing w_rho = 1-1/rho = exp(mu+i theta), the quartet contributes
+lambda_n(O_rho) = 4 - 4 cos(n theta) cosh(n mu).
+We first give an exact formula for mu and an exact inversion from mu to the horizontal displacement delta. We then construct deterministic resonant indices n for which cos(n theta) is uniformly positive. The main result is a spectral-clustering theorem: if lambda_1,...,lambda_N are nonnegative, then the Li-modulus M_rho = |mu_rho| of any selected off-line zero cannot exceed the largest competing Li-modulus by more than
+O((log N + log log N)/N),
+provided N is large enough to contain a resonance for the selected phase. The proof uses only the symmetry orbit formula and standard zero counting; it does not assume the Riemann hypothesis and does not require the selected zero to dominate all competitors.
+As a corollary, an isolated off-line Li-modulus satisfies
+M_rho = O((log N + log log N)/N), which in the small-displacement regime gives
+|beta-1/2|
+= O((gamma^2+1/4)(log N+log log N)/N).
+Thus the previously proposed gamma^2 log N/N resolution scale survives as the correct first-order scale for spectrally isolated zeros. For arbitrary zeros, however, finite positivity forces a dichotomy: either the maximal off-line Li-modulus is already at the finite-resolution scale, or it must be accompanied by another zero with nearly the same modulus. We also prove a finite-maximal-cluster statement showing that a strict spectral gap forces negative Li coefficients at arbitrarily large indices.
+The results are conditional only in the sense inherent in identifying the relevant zero; no form of the Riemann hypothesis is assumed. They provide a more robust formulation of finite Li resolution in which the correct object is the upper envelope of the off-line Li-moduli rather than an isolated zero.
+
+1. Introduction
+The Li coefficients of the Riemann xi-function are
+lambda_n = sum_rho [1 - (1-1/rho)^n],
+where the sum is over the non-trivial zeros of zeta, with the usual symmetric interpretation. Li's criterion states that the Riemann hypothesis is equivalent to lambda_n >= 0 for every n >= 1.
+The purpose of this paper is different. We do not attempt to prove the Riemann hypothesis. Instead we ask a finite-resolution question:
+If lambda_1,...,lambda_N >= 0, what quantitative restrictions does this impose on an individual off-critical-line zero?
+A natural first guess is that an off-line zero at height gamma and horizontal displacement delta should become visible once
+N * |mu| ~ log N,
+where |mu| is the exponential growth rate appearing in its Li contribution. Since |mu| is approximately |delta|/(gamma^2+1/4), this suggests the scale
+|delta| ~ (gamma^2 log N)/N.
+A direct one-zero proof, however, encounters a serious obstruction. Other off-line zeros contribute factors cosh(n mu_rho) and may have comparable or larger exponential rates. Therefore the remainder cannot in general be treated as O(n log n).
+The main result of this paper resolves that obstruction at the correct structural level. Rather than asserting that one zero dominates, we prove that finite positivity forces the selected Li-modulus to be within O(log N/N) of the largest competing Li-modulus. This converts the original problem from an uncontrolled cancellation problem into a precise spectral clustering statement.
+The paper is organized as follows. Section 2 derives the exact quartet formula and the exact relation between the Li-modulus and horizontal displacement. Section 3 constructs resonant indices. Section 4 proves the global remainder estimate using zero counting. Section 5 proves the main spectral-clustering theorem. Section 6 derives the isolated-zero gamma^2 log N/N bound. Section 7 studies the maximal off-line cluster. Section 8 records the abstract finite-data obstruction and explains why an arithmetic admissibility condition is necessary for any universal finite-information barrier. Section 9 discusses prior work and the precise novelty claim. Section 10 lists limitations and further problems.
+
+
+2. Exact geometry of one off-line quartet
+Let
+rho = 1/2 + delta + i gamma,
+with gamma != 0 and |delta| < 1/2. The functional equation and reality symmetry generate the quartet
+O_rho = {rho, 1-rho, conjugate(rho), 1-conjugate(rho)}.
+Set
+w_rho = 1 - 1/rho.
+The reflection rho -> 1-rho gives
+w_{1-rho} = 1/w_rho,
+while conjugation gives
+w_{conjugate(rho)} = conjugate(w_rho).
+Write
+w_rho = exp(mu + i theta),
+where mu = log |w_rho| and theta is an argument of w_rho. Summing the four orbit contributions gives the exact identity
+lambda_n(O_rho)
+= 4 - [w^n + conjugate(w)^n + w^{-n} + conjugate(w)^{-n}]
+= 4 - 4 cos(n theta) cosh(n mu).                     (2.1)
+No asymptotic approximation is involved.
+2.1 Exact modulus formula
+A direct computation gives
+|w_rho|^2
+= [gamma^2 + (delta-1/2)^2]
+/[gamma^2 + (delta+1/2)^2].
+Define
+q = gamma^2 + 1/4.
+Then
+|w_rho|^2 = (q-delta+delta^2)/(q+delta+delta^2),
+and therefore
+mu
+= (1/2) log[(q-delta+delta^2)/(q+delta+delta^2)]
+= -artanh[delta/(q+delta^2)].                         (2.2)
+Consequently
+|mu| = artanh(|delta|/(q+delta^2)).                      (2.3)
+For fixed gamma, the expansion at delta=0 is
+mu
+= -delta/q
+
+
+
+(1/q^2 - 1/(3q^3)) delta^3
+
+O_gamma(delta^5).                                 (2.4)
+In particular,
+|mu| = |delta|/q [1 + O(delta^2/q)].
+For actual zeros in the critical strip, |delta|<1/2. For gamma >= 1 this gives uniform constants
+(5/6) |delta|/q <= |mu| <= (25/21) |delta|/q.              (2.5)
+The exact inversion is also useful. Put u = -tanh(mu). Then
+u = delta/(q+delta^2),
+so delta is the small root of u delta^2-delta+uq=0. Hence
+delta
+= [1 - sqrt(1-4q u^2)]/(2u)
+= 2q u/[1 + sqrt(1-4q u^2)].                            (2.6)
+Thus
+|delta|
+= 2q |tanh(mu)|
+/[1 + sqrt(1-4q tanh^2(mu))].                         (2.7)
+Equation (2.7) is an exact conversion from Li-modulus to horizontal displacement.
+2.2 Phase
+The phase must not be replaced by its critical-line value away from delta=0. We have
+w_rho
+= [(delta-1/2)+i gamma]/[(delta+1/2)+i gamma]
+and therefore
+w_rho
+= [gamma^2+delta^2-1/4 + i gamma]
+/[(delta+1/2)^2+gamma^2].
+Thus, when the real numerator is positive,
+theta = atan2(gamma, gamma^2+delta^2-1/4).                (2.8)
+On the critical line delta=0 this reduces to
+theta_c = 2 arctan(1/(2 gamma)).                           (2.9)
+
+
+3. Deterministic resonance
+The exponential factor cosh(n mu) is useful only when the oscillatory factor cos(n theta) is positive. Fortunately no Diophantine theorem is needed to produce infinitely many such indices.
+Assume 0 < theta < 1 and define
+n_k = round(2 pi k/theta).
+Then
+|n_k theta - 2 pi k| <= theta/2,
+and hence
+cos(n_k theta) >= cos(theta/2) > cos(1/2) > 0.877.         (3.1)
+Moreover, n_{k+1}-n_k is one of the two nearest integers to 2 pi/theta, up to the harmless rounding-tie convention. Thus the resonance spacing is Theta(1/theta).
+For a given N, let n_* be the largest n_k not exceeding N. Then
+N-n_* < 2 pi/theta + 1.
+In particular, if
+N >= 2(2 pi/theta + 1),                                   (3.2)
+then
+N/2 <= n_* <= N.                                          (3.3)
+For high zeros, theta is of order 1/gamma, so the resonance spacing is of order gamma. Thus N much larger than gamma is sufficient to guarantee a resonant coefficient at index comparable to N.
+Remark. If theta/(2 pi) is irrational, Weyl equidistribution gives the asymptotic density of indices satisfying cos(n theta)>=c. We do not use this because irrationality of the relevant zeta phases is not known. The rounding construction above is deterministic and sufficient for the main theorem.
+
+
+4. Global control of the competing spectrum
+For each zero orbit define
+M_rho = |mu_rho|.
+Fix an off-line orbit rho_0 and write
+M_0 = M_{rho_0},
+and
+M_1 = sup_{rho != rho_0} M_rho,
+where the supremum is over distinct symmetry orbits. If no other off-line orbit exists, set M_1=0. Critical-line orbits have M=0.
+Decompose
+lambda_n = D_0(n) + R_n,
+where
+D_0(n) = 4 - 4 cos(n theta_0) cosh(n mu_0)
+is the selected orbit contribution.
+The point of this section is to prove
+|R_n| <= C n log n exp(n M_1)                            (4.1)
+for an absolute constant C and all sufficiently large n.
+4.1 Low and medium heights
+Consider zeros with |gamma_rho| <= 2n. Standard zero counting gives
+N(2n) = O(n log n).
+For each such orbit,
+|4 - 4 cos(n theta_rho) cosh(n mu_rho)|
+<= 4 + 4 cosh(n M_1)
+<= C exp(n M_1).
+Summing over O(n log n) orbits gives
+O(n log n exp(n M_1)).                                    (4.2)
+4.2 High-height tail
+Now let |gamma_rho| > 2n. Since
+w_rho = 1 - 1/rho,
+we have
+|w_rho-1| = 1/|rho| <= 1/|gamma_rho|.
+For n/|gamma_rho| <= 1/2, the principal logarithm satisfies
+|log w_rho| <= 2/|rho|.
+Therefore
+|mu_rho| <= 2/|gamma_rho|,
+|theta_rho| <= 2/|gamma_rho|.
+Using
+cosh x - 1 = O(x^2),
+1 - cos x = O(x^2),
+we obtain
+|4 - 4 cos(n theta_rho) cosh(n mu_rho)|
+<= C n^2/gamma_rho^2.                                (4.3)
+The zero-counting formula implies
+sum_{|gamma_rho|>2n} 1/gamma_rho^2
+= O(log n/n).
+Consequently the high-height tail is
+O(n log n).                                               (4.4)
+Combining (4.2) and (4.4) proves (4.1).
+This estimate is the crucial replacement for the invalid heuristic R_n=O(n log n). Other off-line zeros may indeed be exponentially large, but their exponential rate is measured explicitly by M_1.
+
+
+5. Main theorem: finite Li positivity implies spectral clustering
+Theorem 5.1 (finite-Li spectral clustering).
+Let rho_0 be an off-critical-line zero with parameters theta_0 and M_0=|mu_0|>0. Let M_1 be the supremum of the Li-moduli of all other symmetry orbits. Suppose N is large enough that there exists an integer n with
+N/2 <= n <= N,
+cos(n theta_0) >= c_0,
+where c_0>0 is fixed. If
+lambda_1,...,lambda_N >= 0,
+then
+M_0 - M_1
+<= [log n + log log n + C(c_0)]/n.                      (5.1)
+In particular,
+M_0
+<= M_1 + O((log N+log log N)/N).                         (5.2)
+Proof.
+At the chosen n, equation (2.1) gives
+lambda_n
+= 4 - 4 cos(n theta_0) cosh(n M_0) + R_n.
+Because lambda_n>=0 and cos(n theta_0)>=c_0,
+4 c_0 cosh(n M_0)
+<= 4 + |R_n|.
+Using (4.1),
+4 c_0 cosh(n M_0)
+<= 4 + C n log n exp(n M_1).
+Since cosh(n M_0)>=exp(n M_0)/2,
+2 c_0 exp(n M_0)
+<= 4 + C n log n exp(n M_1).
+For sufficiently large n the first term on the right can be absorbed into the second, giving
+exp[n(M_0-M_1)]
+<= C' n log n/c_0.
+Taking logarithms proves (5.1). QED.
+The theorem is notable because no spectral gap is assumed. If M_1 is close to M_0, the conclusion simply says that the two moduli must be close. If M_1 is small, the theorem becomes an individual-zero bound.
+
+
+6. Isolated-zero resolution
+Theorem 5.1 immediately yields the previously conjectured scale in the spectrally isolated regime.
+Corollary 6.1.
+Under the assumptions of Theorem 5.1, suppose in addition that
+M_1 <= epsilon_N,
+where epsilon_N = O((log N+log log N)/N).
+Then
+M_0 = O((log N+log log N)/N).                              (6.1)
+If q=gamma^2+1/4 and q M_0^2 -> 0, then
+|delta| = q M_0 (1+o(1))
+and therefore
+|delta|
+= O((gamma^2+1/4)(log N+log log N)/N).                   (6.2)
+Proof.
+Equation (6.1) is immediate from (5.2). Equation (6.2) follows from the exact inversion (2.7), or equivalently from (2.4). QED.
+The first-order scale is therefore gamma^2 log N/N, with an additive log log N correction coming from the n log n multiplicity of competing zeros in the finite-height range.
+The interpretation is important. The scale is not a universal finite-information barrier for arbitrary symmetric entire functions. It is the resolution scale of an isolated Li-modulus exponent.
+
+
+7. A strict spectral gap forces negative Li coefficients
+The previous theorem gives a finite-N obstruction. We can also formulate the converse asymptotic phenomenon.
+Define M_* = max_rho M_rho whenever at least one off-line zero exists. The maximum is attained. Indeed, as |gamma_rho| -> infinity, M_rho = O(1/gamma_rho^2), so only finitely many zero orbits can satisfy M_rho >= epsilon for any epsilon>0.
+Let rho_1,...,rho_r be all maximal off-line orbits with M_rho=M_. Combine repeated frequencies and write their leading oscillatory coefficient as
+S_n = sum_{j=1}^r a_j cos(n theta_j),
+with a_j>0 and distinct frequencies chosen in (0,pi).
+The contribution of the maximal cluster is -4 cosh(n M_) S_n, up to the harmless constant term 4 per orbit. All remaining off-line zeros have modulus at most M_2<M_.
+Proposition 7.1.
+There exists c_>0 and infinitely many integers n such that S_n >= c_.
+Consequently, for infinitely many n,
+lambda_n <= -c e^{n M_} + O(n log n e^{n M_2})          (7.1)
+for some c>0.
+Proof.
+Since every theta_j lies in (0,pi), the Cesaro mean satisfies
+(1/N) sum_{n<=N} cos(n theta_j) -> 0,
+and hence (1/N) sum_{n<=N} S_n -> 0.
+After combining equal frequencies,
+lim_{N->infty} (1/N) sum_{n<=N} S_n^2
+= (1/2) sum_j a_j^2
+=: Q > 0.                                             (7.2)
+Let A=sum_j a_j. Since |S_n|<=A, the mean-zero and positive mean-square relations imply that S_n is bounded below by a positive constant infinitely often. More explicitly, if positive values were eventually all smaller than epsilon, then the mean-zero condition would force the mean negative magnitude to be at most epsilon, while S_n^2 <= A |S_n| would give limsup of the mean square at most A epsilon. Taking epsilon<Q/(2A) contradicts (7.2).
+Thus S_n>=c_* infinitely often. On those indices, the maximal cluster contributes at most -c e^{nM_}, while all non-maximal finite-height contributions are O(n log n e^{nM_2}) and the tail is O(n log n). Since M_2<M_, equation (7.1) follows. QED.
+Corollary 7.2.
+If M_>M_2, then lambda_n < 0 for infinitely many n. More quantitatively, negative coefficients occur along a subsequence once
+n(M_-M_2) > log n + O(log log n).                         (7.3)
+Thus a persistent spectral gap is incompatible with eventual Li positivity.
+
+
+8. The finite-resolution dichotomy
+Suppose lambda_1,...,lambda_N>=0 and an off-line zero has Li-modulus M_0. Then, provided N contains a resonance at an index comparable to N,
+M_0 <= M_1 + O((log N+log log N)/N).                        (8.1)
+Hence finite positivity has two possible explanations.
+(A) Small-modulus regime:
+M_0 = O((log N+log log N)/N).
+Then the zero is within
+|delta| = O((gamma^2+1/4)(log N+log log N)/N)
+of the critical line, in the small-displacement regime.
+(B) Clustered-modulus regime:
+M_1 = M_0 + O((log N+log log N)/N).
+Then another zero orbit has almost the same exponential Li growth rate.
+Therefore the genuine obstruction to an individual-zero theorem is not mysterious cancellation at arbitrary frequencies. It is a very specific near-degeneracy of the Li-modulus spectrum.
+This is the main conceptual refinement of the finite-resolution program.
+
+
+9. Abstract finite-data obstruction
+The arithmetic zeta function must be kept separate from the general symmetry class.
+Let
+L_gamma(s) = (s-1/2)^2 + gamma^2
+and
+P_{delta,gamma}(s)
+= [(s-1/2-delta)^2+gamma^2]
+[(s-1/2+delta)^2+gamma^2].
+The latter is invariant under s -> 1-s and under complex conjugation, and its zeros form an off-line quartet. At delta=0, P_{0,gamma}(s)=L_gamma(s)^2. Thus replacing two critical-line pairs by one off-line quartet preserves the basic symmetry and total multiplicity.
+For any fixed N, one can choose a critical-line height T for which
+p_n(T)=2[1-cos(n theta_T)]>0
+for every 1<=n<=N. Adding sufficiently many copies of that critical-line pair then makes the first N Li coefficients nonnegative, regardless of the fixed off-line quartet.
+Hence no universal finite-information barrier of order gamma^2 log N/N can hold in the class of arbitrary order-one entire functions with only the reflection and reality symmetries.
+This is an information-theoretic obstruction, not a statement about zeta.
+A stronger 2025 abstract obstruction was given by Zongmin Liu, who constructed symmetric polynomial perturbations of xi preserving the first N Li coefficients exactly while inserting off-line zeros. The construction does not preserve the Euler product or the prime-number explicit formula. This reinforces the necessity of exploiting arithmetic structure in any unconditional theorem about zeta.
+
+
+10. Relation to existing Li theory
+Li proved the equivalence between RH and nonnegativity of all Li coefficients. Keiper supplied the power-series framework from which the coefficients arise, and Bombieri-Lagarias developed complementary zero-set formulations.
+Finite Li information is not itself a new subject. Palojarvi proved explicit finite-window results for tau-Li coefficients: suitable nonnegativity on an interval of indices yields zero-free regions, while negative coefficients can certify zeros outside specified regions.
+The present work asks a more pointwise question. Instead of asking only whether a region contains zeros, we track the exponential rate M_rho = |log|1-1/rho||, and show that finite positivity controls the distance between one such exponent and the largest competing exponent. The resulting gamma^2 log N/N scale is obtained only after an isolation condition is imposed.
+A current 2026 seminar announcement by Neea Palojarvi explicitly describes the question of what finitely many Li coefficients tell about zero location as an active research topic and states that the talk is based on joint work with Samprit Ghosh and Nicol Leong. Accordingly, claims of novelty for the broad finite-Li problem should be avoided until that work and related literature are fully compared with the present theorem.
+
+
+11. What is proved and what remains open
+The following statements are established in this paper.
+
+
+12. The exact quartet identity (2.1).
+
+
+13. The exact modulus formula (2.2) and exact inversion (2.7).
+
+
+14. The deterministic resonance construction (3.1)-(3.3).
+
+
+15. The global competitor estimate (4.1) from standard zero counting.
+
+
+16. The finite-Li spectral-clustering theorem (5.1).
+
+
+17. The isolated-zero finite-resolution estimate (6.2).
+
+
+18. The strict-gap negative-subsequence result of Proposition 7.1.
+The following stronger statements remain open.
+First, we do not prove that an arbitrary specified zeta zero is spectrally isolated.
+Second, we do not rule out the possibility that several off-line zero orbits have Li-moduli separated by only O(log N/N).
+Third, we do not prove that the phases of a maximal Li-modulus cluster cannot arrange themselves so as to delay negative coefficients over a prescribed finite interval.
+Fourth, we do not derive an unconditional individual-zero bound
+lambda_1,...,lambda_N >=0
+=> |beta-1/2| <= C gamma^2 log N/N
+for every off-line zero of zeta.
+That statement would require an additional arithmetic theorem controlling the near-maximal Li-modulus spectrum.
+
+
+19. A possible next theorem
+The remaining problem can now be stated cleanly.
+Let
+M_* = max_rho M_rho,
+M_2 = max_{M_rho<M_} M_rho.
+A decisive next result would be an arithmetic lower bound on the constructive interference of the maximal cluster, uniform enough to show that if
+M_-M_2 >= Delta,
+then some negative Li coefficient must occur with
+n <= C Delta^{-1} log(Delta^{-1}).
+Such a theorem would turn the present spectral-clustering result into a quantitative zero-location theorem.
+A still stronger possibility would be an arithmetic bound forcing
+M_2 <= M_* - c M_*
+for sufficiently large maximal off-line zeros. That would immediately recover an individual-zero finite-resolution theorem at the gamma^2 log N/N scale.
+At present these are research problems, not established facts.
+
+
+20. Conclusion
+The central lesson is that finite Li coefficients resolve exponential spectral scales before they resolve individual zeros.
+For an off-line zero,
+M_rho = |log|1-1/rho||,
+and its quartet contribution contains the factor
+cosh(n M_rho).
+Finite positivity up to N therefore constrains the largest Li-modulus at resolution approximately
+(log N)/N.
+The exact translation from Li-modulus to horizontal displacement introduces the height factor gamma^2, producing
+|beta-1/2| ~ gamma^2 log N/N
+in the isolated-zero regime.
+The correct unconditional structural statement is more subtle and more robust:
+finite Li positivity forces every near-maximal off-line exponent into an O(log N/N) spectral cluster.
+This formulation survives the presence of competing off-line zeros and does not assume RH. It also identifies the exact remaining difficulty: understanding the arithmetic phase structure and spacing of the maximal Li-modulus zero cluster.
+The resulting program is therefore not a proposed proof of the Riemann hypothesis. It is a quantitative theory of finite Li resolution, with a rigorous spectral-clustering theorem at its core.
+References
+[1] J. B. Keiper, “Power series expansions of Riemann's xi function,” Mathematics of Computation 58 (1992), 765–773.
+[2] X.-J. Li, “The Positivity of a Sequence of Numbers and the Riemann Hypothesis,” Journal of Number Theory 65 (1997), 325–333.
+[3] E. Bombieri and J. C. Lagarias, “Complements to Li's criterion for the Riemann hypothesis,” Journal of Number Theory 77 (1999), 274–287.
+[4] F. C. S. Brown, “Li's criterion and zero-free regions of L-functions,” Journal of Number Theory 111 (2005), 1–32.
+[5] A. Voros, “Sharpenings of Li's Criterion for the Riemann Hypothesis,” Mathematical Physics, Analysis and Geometry 9 (2005).
+[6] N. Palojarvi, “Explicit zero-free regions and a tau-Li-type criterion,” Albanian Journal of Mathematics 14 (2020), 47–77. arXiv:1807.01506.
+[7] A. Hasanalizade, M. Shen, and A. Wong, “Counting zeros of the Riemann zeta function,” Journal of Number Theory 235 (2022), 219–241. arXiv:2107.06506.
+[8] J. B. Platt and T. S. Trudgian, “The Riemann hypothesis is true up to 3·10^12,” Bulletin of the London Mathematical Society 53 (2021).
